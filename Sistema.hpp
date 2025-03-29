@@ -25,7 +25,9 @@ class Sistema
       vector<ItemVenda *> motores;
       vector<ItemVenda *> cambios;
       vector<ItemVenda *> cores;
-
+      vector<ItemVenda *> direcao;
+      vector<ItemVenda *> rodas;
+      vector<ItemVenda *> sonorizacao;
       vector<ItemVenda *> orcamento;
       
       Concessionaria * cliente;
@@ -40,6 +42,9 @@ class Sistema
       ItemVenda * escolheMotor();
       ItemVenda * escolheCambio();
       ItemVenda * escolheCor();
+      ItemVenda * escolheDirecao();
+      ItemVenda * escolheRodas();
+      ItemVenda * escolheSonorizacao();
       
    public:
       Sistema(Concessionaria *);

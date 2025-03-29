@@ -18,6 +18,9 @@
 #include "Cambio.hpp"
 #include "Cor.hpp"
 #include "Menu.hpp"
+#include "Direcao.hpp"
+#include "Roda.hpp"
+#include "Sonorizacao.hpp"
 
 using namespace std;
 
@@ -62,6 +65,27 @@ Sistema::~Sistema()
       delete(*varre++);	
       };
    cores.clear();  
+
+   varre = direcao.begin();//direcao
+   while(varre != direcao.end())
+      {
+         delete(*varre++);
+      }
+   direcao.clear();
+
+   varre = rodas.begin();//rodas
+   while(varre != rodas.end())
+      {
+         delete(*varre++);
+      }
+   rodas.clear();
+
+   varre = sonorizacao.begin();//sonorizacao
+   while(varre != sonorizacao.end())
+      {
+         delete(*varre++);
+      }
+   sonorizacao.clear();
    };
 
 void Sistema::boasVindas()
@@ -121,6 +145,24 @@ void Sistema::carregarEstoque()
    cores.insert(cores.end(), new Cor("Cinza", true, 250.0));
    cores.insert(cores.end(), new Cor("Vermelho", true, 450.0));
    cores.insert(cores.end(), new Cor("Azul", true, 250.0));
+
+   direcao.clear();
+   direcao.insert(direcao.end(),new Direcao("Mecanica", 150.0));
+   direcao.insert(direcao.end(),new Direcao("Hidraulica", 200.0));
+   direcao.insert(direcao.end(),new Direcao("Eletrica", 250.0));
+   direcao.insert(direcao.end(),new Direcao("Eletro-hidraulica", 300.0));
+
+   rodas.clear();
+   rodas.insert(rodas.end(), new Roda("Liga leve",false,150.0));
+   rodas.insert(rodas.end(), new Roda("aco",false,100.0));
+   rodas.insert(rodas.end(), new Roda("Liga leve",true,250.0));
+   rodas.insert(rodas.end(), new Roda("aco",false,200.0));
+
+   sonorizacao.clear();
+   sonorizacao.insert(sonorizacao.end(), new Sonorizacao("CD player", 200.0));
+   sonorizacao.insert(sonorizacao.end(), new Sonorizacao("DVD player", 300.0));
+   sonorizacao.insert(sonorizacao.end(), new Sonorizacao("Central multimidia", 500.0));
+
    };
 
 void Sistema::processa()
@@ -154,7 +196,12 @@ void Sistema::iniciarVenda()
    listarConfiguracao();
    orcamento.insert(orcamento.end(), escolheCor());
    listarConfiguracao();
-
+   orcamento.insert(orcamento.end(),escolheDirecao());
+   listarConfiguracao();
+   orcamento.insert(orcamento.end(),escolheRodas());
+   listarConfiguracao();
+   orcamento.insert(orcamento.end(),escolheSonorizacao());
+   listarConfiguracao();
    cout << "------------------------------\nCONFIGURACAO COMPLETADA\n------------------------------\n";
    };
 
@@ -178,7 +225,8 @@ ItemVenda * Sistema::escolheAutomovel()
    
    while(varre != carros.end())
       {
-      opcoes.push_back((*varre++)->getDescricao());	
+      opcoes.push_back((*varre)->getDescricao() + " por R$ " + to_string((*varre)->getValor()));
+      varre++;	
       };
    Menu menu("Modelos disponiveis", opcoes);
 
@@ -207,7 +255,8 @@ ItemVenda * Sistema::escolheCambio()
    
    while(varre != cambios.end())
       {
-      opcoes.push_back((*varre++)->getDescricao());	
+         opcoes.push_back((*varre)->getDescricao() + " por R$ " + to_string((*varre)->getValor()));
+         varre++;	
       };
    Menu menu("Cambios disponiveis", opcoes);
 
@@ -221,13 +270,60 @@ ItemVenda * Sistema::escolheCor()
    
    while(varre != cores.end())
       {
-      opcoes.push_back((*varre++)->getDescricao());	
+         opcoes.push_back((*varre)->getDescricao() + " por R$ " + to_string((*varre)->getValor()));
+         varre++;	
       };
    Menu menu("Cores disponiveis", opcoes);
 
    return (cores.at(menu.getEscolha()));  
    };         
    
+
+ItemVenda * Sistema::escolheDirecao()
+   {
+   vector<string> opcoes;
+   vector<ItemVenda *>::iterator varre = direcao.begin();
+   
+   while(varre != direcao.end())
+      {
+         opcoes.push_back((*varre)->getDescricao() + " por R$ " + to_string((*varre)->getValor()));
+         varre++;	
+      };
+   Menu menu("tipos de direcao disponiceis", opcoes);
+
+   return (direcao.at(menu.getEscolha()));  
+   };    
+   
+ItemVenda * Sistema::escolheRodas()
+   {
+   vector<string> opcoes;
+   vector<ItemVenda *>::iterator varre = rodas.begin();
+   
+   while(varre != rodas.end())
+      {
+         opcoes.push_back((*varre)->getDescricao() + " por R$ " + to_string((*varre)->getValor()));
+         varre++;	
+      };
+   Menu menu("tipos de rodas disponiveis", opcoes);
+
+   return (rodas.at(menu.getEscolha()));  
+   }; 
+
+ItemVenda * Sistema::escolheSonorizacao()
+   {
+   vector<string> opcoes;
+   vector<ItemVenda *>::iterator varre = sonorizacao.begin();
+   
+   while(varre != sonorizacao.end())
+      {
+         opcoes.push_back((*varre)->getDescricao() + " por R$ " + to_string((*varre)->getValor()));
+         varre++;	
+      };
+   Menu menu("tipos de sonorizacao disponiveis", opcoes);
+
+   return (sonorizacao.at(menu.getEscolha()));  
+   }; 
+
    void Sistema::imprimirOrcto()
    {
        cout << "========================================\n";
