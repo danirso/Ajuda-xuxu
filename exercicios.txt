@@ -14,7 +14,7 @@ O programa deste exercício emula a situação de uma concessionária de veícul
 
 6. Compile e rode o sistema, que deve estar operando corretamente; a funcionalidade de imprimir orçamento não está disponível; ok
 
-7. Escreva o método imprimirOrcto() da classe Sistema (existe, mas está vazio); o método deve usar somente os atributos cliente (para imprimir dados da concessionária no cabeçalho do orçamento) e o vector orçamento (para contabilizar os preços dos itens); veja o método boasVindas() para aproveitar ideias;
+7. Escreva o método imprimirOrcto() da classe Sistema (existe, mas está vazio); o método deve usar somente os atributos cliente (para imprimir dados da concessionária no cabeçalho do orçamento) e o vector orçamento (para contabilizar os preços dos itens); veja o método boasVindas() para aproveitar ideias;ok
 
 8. Crie a classe ConcessionariaModerna, derivada de Concessionaria, com novos atributos que facilitam contato dos clientes: site, facebook, tweeter e whatsapp; use essa classe na função main e altere o programa para exibir também estes novos dados em todas as ocasiões em que dados da concessionária forem apresentados;
 
