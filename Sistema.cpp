@@ -218,12 +218,32 @@ ItemVenda * Sistema::escolheCor()
    return (cores.at(menu.getEscolha()));  
    };         
    
-void Sistema:: imprimirOrcto()
+   void Sistema::imprimirOrcto()
    {
-   // a fazer
-     
-     // FAZER BEM FEITO, COM BOA FORMATACAO DA INTERFACE DE USUARIO
-     
-   };
+       cout << "========================================\n";
+       cout << "        ORÇAMENTO DA CONCESSIONÁRIA     \n";
+       cout << "========================================\n";
+       
+       if (cliente)
+       {
+           cout << "Concessionária: " << cliente->getNome() << "\n";
+           cout << "Endereço: " << cliente->getEndereco() << "\n";
+           cout << "Telefone: " << cliente->getFone() << "\n";
+           cout << "----------------------------------------\n";
+       }
+       
+       double total = 0.0;
+       
+       for (ItemVenda *item : orcamento)
+       {
+           cout << item->getDescricao() << " - R$ " << item->getValor() << "\n";
+           total += item->getValor();
+       }
+       
+       cout << "----------------------------------------\n";
+       cout << "Total: R$ " << total << "\n";
+       cout << "========================================\n";
+   }
+   
    
 /* fim de arquivo */
