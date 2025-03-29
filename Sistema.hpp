@@ -14,6 +14,7 @@
 
 #include "ItemVenda.hpp"
 #include "Concessionaria.hpp"
+#include "ConcessionariaModerna.hpp"
 
 using namespace std;
 

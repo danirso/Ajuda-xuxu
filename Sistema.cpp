@@ -11,6 +11,7 @@
 
 #include "Sistema.hpp"
 #include "Concessionaria.hpp"
+#include "ConcessionariaModerna.hpp"
 #include "ItemVenda.hpp"
 #include "Automovel.hpp"
 #include "Motor.hpp"
@@ -71,6 +72,15 @@ void Sistema::boasVindas()
    cout << cliente->getEndereco() << endl;
    cout << cliente->getCidade() << "/" << cliente->getEstado() << endl;
    cout << cliente->getFone() << endl;
+   
+   const ConcessionariaModerna* concModerna = dynamic_cast<const ConcessionariaModerna*>(cliente);
+   if (concModerna) {
+       cout << "Site: " << concModerna->getSite() << endl;
+       cout << "Facebook: " << concModerna->getFacebook() << endl;
+       cout << "Twitter: " << concModerna->getTwitter() << endl;
+       cout << "WhatsApp: " << concModerna->getWhatsapp() << endl;
+   }
+   
    cout << "******************************" << endl << endl;
    };
    
@@ -228,7 +238,17 @@ ItemVenda * Sistema::escolheCor()
        {
            cout << "Concessionária: " << cliente->getNome() << "\n";
            cout << "Endereço: " << cliente->getEndereco() << "\n";
+           cout << "Cidade: " << cliente->getCidade() << "\n";
+           cout << "Estado: " << cliente->getEstado() << "\n";
            cout << "Telefone: " << cliente->getFone() << "\n";
+           
+           const ConcessionariaModerna* concModerna = dynamic_cast<const ConcessionariaModerna*>(cliente);
+           if (concModerna) {
+               cout << "Site: " << concModerna->getSite() << "\n";
+               cout << "Facebook: " << concModerna->getFacebook() << "\n";
+               cout << "Twitter: " << concModerna->getTwitter() << "\n";
+               cout << "WhatsApp: " << concModerna->getWhatsapp() << "\n";
+           }
            cout << "----------------------------------------\n";
        }
        

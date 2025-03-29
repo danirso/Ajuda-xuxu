@@ -15,7 +15,10 @@ private:
 public:
     // Construtor
     Concessionaria(string nome, string endereco, string cidade, string estado, string fone);
-    
+
+    // Destrutor virtual para permitir polimorfismo
+    virtual ~Concessionaria() {};
+
     // Getters
     string getNome() const;
     string getEndereco() const;
@@ -30,5 +33,6 @@ public:
     void setEstado(string estado);
     void setFone(string fone);
 };
+
 
 #endif // CONCESSIONARIA_HPP
